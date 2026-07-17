@@ -2,25 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Cine - Proyecto H</title>
+    <title>Reproductor - Proyecto H</title>
     <style>
-        body { background-color: #121212; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-        video { width: 100%; max-width: 600px; border-radius: 8px; margin-top: 20px; }
-        .back-btn { display: inline-block; margin-top: 20px; color: #ff5722; text-decoration: none; font-weight: bold; }
+        /* Estilos básicos */
+        body { background-color: #121212; color: white; font-family: sans-serif; padding: 10px; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .btn { background: #333; color: white; padding: 10px; border-radius: 5px; text-decoration: none; }
+        video { width: 100%; border-radius: 8px; }
+        
+        /* Cuadrícula de sugerencias */
+        .sugerencias { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+        .item { background: #1e1e1e; padding: 5px; border-radius: 5px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <h1>Reproductor de Video</h1>
-    
-    <!-- Aquí va tu video -->
-    <video controls>
+    <div class="nav-buttons">
+        <a href="#" class="btn" onclick="alert('Anterior')">← Anterior</a>
+        <a href="#" class="btn" onclick="alert('Próximo')">Próximo →</a>
+    </div>
+
+    <video controls id="videoPlayer">
         <source src="video1.mp4" type="video/mp4">
-        Tu navegador no soporta videos.
     </video>
 
-    <br>
-    <a href="index.html" class="back-btn">← Volver al inicio</a>
+    <h3>Publicaciones sugeridas</h3>
+    <div class="sugerencias" id="sugerencias-container"></div>
 
+    <script>
+        // Lista de todos tus videos disponibles
+        const todosLosVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4", "video6.mp4", "video7.mp4", "video8.mp4", "video9.mp4", "video10.mp4"];
+
+        // Función para mostrar 8 aleatorios
+        function cargarSugerencias() {
+            const contenedor = document.getElementById('sugerencias-container');
+            // Mezclar lista y tomar 8
+            const aleatorios = todosLosVideos.sort(() => 0.5 - Math.random()).slice(0, 8);
+            
+            aleatorios.forEach(video => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.innerHTML = `<p>${video}</p><a href="cine.html" class="btn">Ver</a>`;
+                contenedor.appendChild(div);
+            });
+        }
+
+        window.onload = cargarSugerencias;
+    </script>
 </body>
 </html>

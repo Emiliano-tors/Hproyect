@@ -18,18 +18,19 @@
 <body>
 
     <div class="nav-buttons">
-        <a href="#" class="btn" onclick="alert('Anterior')">← Anterior</a>
-        <a href="#" class="btn" onclick="alert('Próximo')">Próximo →</a>
+        <a href="#" class="btn" onclick="href('Anterior')">← Anterior</a>
+        <a href="#" class="btn" onclick="href('Próximo')">Próximo →</a>
     </div>
 
-    
+    <script>
+    // 1. Obtener el nombre del video desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const videoSeleccionado = params.get('video');
 
-    <video controls id="videoPlayer
     // 2. Asignar el video al reproductor
     document.getElementById('videoSource').src = videoSeleccionado;
-    document.getElementById('videoPlayer').load() type="video/mp4">
-    </video>
-
+    document.getElementById('videoPlayer').load();
+        
     <h3>Publicaciones sugeridas</h3>
     <div class="sugerencias" id="sugerencias-container"></div>
 

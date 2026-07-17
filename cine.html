@@ -22,7 +22,11 @@
         <a href="#" class="btn" onclick="href('Próximo')">Próximo →</a>
     </div>
 
-    <script>
+    <video controls id="videoPlayer" width="100%">
+    <source id="videoSource" src="" type="video/mp4">
+</video>
+
+<script>
     // 1. Obtener el nombre del video desde la URL
     const params = new URLSearchParams(window.location.search);
     const videoSeleccionado = params.get('video');
@@ -30,29 +34,24 @@
     // 2. Asignar el video al reproductor
     document.getElementById('videoSource').src = videoSeleccionado;
     document.getElementById('videoPlayer').load();
+
+    // 3. Tus sugerencias aleatorias (puedes incluir fotos o videos)
+    const contenido = ["video1.mp4", "video2.mp4", "foto1.jpg", "foto2.jpg"];
+
+    function cargarSugerencias() {
+        const contenedor = document.getElementById('sugerencias-container');
+        // Mezclar aleatoriamente
+        const aleatorios = contenido.sort(() => 0.5 - Math.random()).slice(0, 8);
         
-    <h3>Publicaciones sugeridas</h3>
-    <div class="sugerencias" id="sugerencias-container"></div>
-
-    <script>
-        // Lista de todos tus videos disponibles
-        const todosLosVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4", "video6.mp4", "video7.mp4", "video8.mp4", "video9.mp4", "video10.mp4"];
-
-        // Función para mostrar 8 aleatorios
-        function cargarSugerencias() {
-            const contenedor = document.getElementById('sugerencias-container');
-            // Mezclar lista y tomar 8
-            const aleatorios = todosLosVideos.sort(() => 0.5 - Math.random()).slice(0, 8);
-            
-            aleatorios.forEach(video => {
-                const div = document.createElement('div');
-                div.className = 'item';
-                div.innerHTML = `<p>${video}</p><a href="cine.html" class="btn">Ver</a>`;
-                contenedor.appendChild(div);
-            });
-        }
-
-        window.onload = cargarSugerencias;
-    </script>
+        aleatorios.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'item';
+            // Si es video, manda a cine.html, si es foto, podrías crear un visualizador de fotos
+            div.innerHTML = `<p>${item}</p><a href="cine.html?video=${item}" class="btn">Ver</a>`;
+            contenedor.appendChild(div);
+        });
+    }
+    window.onload = cargarSugerencias;
+</script> 
 </body>
 </html>

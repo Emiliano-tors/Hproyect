@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color: black; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+
+    <img id="fotoGrande" src="" style="max-width: 100%; max-height: 100%;">
+
+    <script>
+        // Obtiene el nombre de la foto desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const foto = params.get('foto');
+        
+        // Asigna la foto al elemento <img>
+        document.getElementById('fotoGrande').src = foto;
+    </script>
+</body>
+</html>
